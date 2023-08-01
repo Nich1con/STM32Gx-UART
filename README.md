@@ -63,7 +63,7 @@
 - Размер **передающего** буфера FIFO
   
 	```
-	STM32G_UART <UART_FULL> uart(LPUART1);				// Полнодуплексный, буферы: [256 байт RX / 256 байт TX]
+	STM32G_UART <UART_FULL> uart(LPUART1);			// Полнодуплексный, буферы: [256 байт RX / 256 байт TX]
 	STM32G_UART <UART_FULL, 128, 512> uart(LPUART1);	// Полнодуплексный, буферы: [128 байт RX / 512 байт TX]
 	STM32G_UART <UART_RX, 512, 1> uart(LPUART1);		// Только прием, буферы: [512 байт RX / 1 байт TX]
 	STM32G_UART <UART_TX, 1, 512> uart(LPUART1);		// Только передача, буферы: [1 байт RX / 512 байт TX]
