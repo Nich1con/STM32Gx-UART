@@ -23,10 +23,10 @@
  *
  *	API:
  *	1. Создание объекта uart (на примере LPUART1):
- *		STM32G4_UART <UART_FULL> uart(LPUART1);				// Полнодуплексный, буферы: [256 байт RX / 256 байт TX]
- *		STM32G4_UART <UART_FULL, 128, 512> uart(LPUART1);	// Полнодуплексный, буферы: [128 байт RX / 512 байт TX]
- *		STM32G4_UART <UART_RX, 512, 1> uart(LPUART1);		// Только прием, буферы: [512 байт RX / 1 байт TX]
- *		STM32G4_UART <UART_TX, 1, 512> uart(LPUART1);		// Только передача, буферы: [1 байт RX / 512 байт TX]
+ *		STM32G_UART <UART_FULL> uart(LPUART1);				// Полнодуплексный, буферы: [256 байт RX / 256 байт TX]
+ *		STM32G_UART <UART_FULL, 128, 512> uart(LPUART1);	// Полнодуплексный, буферы: [128 байт RX / 512 байт TX]
+ *		STM32G_UART <UART_RX, 512, 1> uart(LPUART1);		// Только прием, буферы: [512 байт RX / 1 байт TX]
+ *		STM32G_UART <UART_TX, 1, 512> uart(LPUART1);		// Только передача, буферы: [1 байт RX / 512 байт TX]
  *
  *	2. Создание обработчика прерывания (на примере LPUART1):
  *		extern "C" void LPUART1_IRQHandler () {uart.IRQ();}	// Создаем обработчик и передаем ему метод IRQ();
@@ -79,12 +79,11 @@
 #define WR_BIT(REG, BIT, X) (X ? SET_BIT(REG, BIT) : CLEAR_BIT(REG, BIT))
 #endif
 
-template <uint8_t MODE, int RXSZ = 256, int TXSZ = 256> class STM32G4_UART {
+template <uint8_t MODE, int RXSZ = 256, int TXSZ = 256> class STM32G_UART {
 public:
 
 	/* ================================ Системное: инициализация и управление ================================ */
-//, MODIFY_REG(RCC -> CCIPR, RCC_CCIPR_LPUART1SEL, RCC_CCIPR_LPUART1SEL_1)
-	STM32G4_UART (USART_TypeDef *UART) : UARTx(UART){}
+	STM32G_UART (USART_TypeDef *UART) : UARTx(UART){}
 
 	void init(uint32_t baudrate, uint32_t clk = 0UL){
 		/* 1. Полный сброс выбранного UART через RCC*/
