@@ -20,11 +20,42 @@
 ## Как использовать?
 1. Добавь **stm32gx_uart.hpp** в свой проект 
 2. Настрой **тактирование** системы (при помощи CubeMX или CMSIS)
-3. Настрой **GPIO** выбранных UART в режим альтернативной функции
-4. Создай объект(ы) UART (пример для **USART1**):
+3. Настрой **GPIO** выбранных UART в режим альт. функции **UARTx**
+4. Инициализировать UART в CubeMX **не нужно!**
+5. Создай объект(ы) UART (пример для **USART1**):
 	```
     STM32G_UART <UART_FULL> uart(USART1);	
     ``` 
-5. Создай 
+6. Создай обработчик(и) прерывания выбранного UART (пример для **USART1**):
+	```
+    extern "C" void USART1_IRQHandler () {
+		uart.IRQ();
+	}
+    ``` 
+7. Вызови метод **init(baudrate)** (пример для 115200 Бод/с):
+	```
+    uart.init(115200); 
+    ``` 
+8. Выводи данные в порт при помощи **print()** или **printf()**:
+	```
+	uint32_t data = 1523142134;
+	float value = 532.7613;
+	
+	uart.print(data); 
+	uart.print(", ");
+	uart.print(value);
+	uart.println();
+	
+	uart.printf("long: %d, float: %f \r\n", data, value); 
+    ```
+
+9. Читай данные из порта при помощи **read()**:
+	```
+	while(uart.available()){
+		uint8_t data = uart.read();
+	}	
+    ```
+ 
+   
 
 
