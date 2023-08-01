@@ -136,7 +136,7 @@
 	uart.txFlush();
     ```
 ### Печать в порт (print и printf):
-- Печать через **prinf()**, внутренний буфер:
+- Печать через **prinf()**, использует внутренний буфер:
 	```
 	char str[] = "Hello";
 	uart.printf("%s \r\n\", str);
@@ -153,7 +153,7 @@
 	```
 	uart.print("Hello");
     ```
-- Печать целых **(int8_t, uint8_t...int32_t, uint32_t)**:
+- Печать целых **(int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t)**:
 	```
 	uint16_t data = 5123;
 	uart.print(data);	// Вывести в десятичном виде
