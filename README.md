@@ -70,9 +70,7 @@
     ```
 ### Создание обработчика прерывания:
 	```
-	extern "C" void LPUART1_IRQHandler () {
-		uart.IRQ();
-	}
+	extern "C" void LPUART1_IRQHandler () { uart.IRQ(); }
     ```
 - Обработчик размещается в любом удобном файле
 - Название корректируем под нужный UART
