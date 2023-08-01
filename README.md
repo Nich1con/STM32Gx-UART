@@ -131,6 +131,14 @@
 	```
 	uart.write(data, len);
     ```
+- Очистка буфера передатчика
+	```
+	uart.txFlush();
+    ```
+- Очистка буфера приемника
+	```
+	uart.rxFlush();
+    ```	
 ### Печать в порт (print и printf):
 - Печать через **prinf()**, внутренний буфер:
 	```
@@ -148,9 +156,22 @@
 	```
 	uart.print("Hello");
     ```
-- Печать целых(int8_t, uint8_t...int32_t, uint32_t):
+- Печать целых **(int8_t, uint8_t...int32_t, uint32_t)**:
 	```
 	uint16_t data = 5123;
 	uart.print(data);	// Вывести в десятичном виде
 	uart.print(data, 16);	// Вывести в HEX 
+	uart.print(data, 2);	// Вывести в BIN  
+    ```
+- Печать дробных **(float, double)**:
+	```
+	float data = 51.2355;
+	uart.print(data);	// Вывести с двумя знаками после запятой
+	uart.print(data, 3);	// Вывести тремя знаками
+	uart.print(data, 4);	// И так далее... 
+    ```
+- Печать целых в полном двоичном виде **(uint8_t, uint16_t, uint32_t)**:
+	```
+	uint16_t data = 12431;
+	uart.printBIN(data);
     ```
