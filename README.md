@@ -129,14 +129,15 @@
     ```
 - Вывод массива байт в порт:
 	```
-	uart.write(data, len);
+	uint8_t data[128];
+	uart.write(data, sizeof(data));
     ```
 - Очистка буфера передатчика
 	```
 	uart.txFlush();
     ```
 ### Печать в порт (print и printf):
-- Печать через **prinf()**, использует внутренний буфер:
+- Печать через **printf()**, использует внутренний буфер:
 	```
 	char str[] = "Hello";
 	uart.printf("%s \r\n\", str);
